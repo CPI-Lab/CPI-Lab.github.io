@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FCN 2025 – Participant Origins (Europe)</title>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+  <style>
+    html, body { height: 100%; margin: 0; }
+    #map { height: 100vh; width: 100%; }
+    .title {
+      position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+      background: rgba(255,255,255,0.9); padding: 8px 12px;
+      border-radius: 12px; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      z-index: 999; font-weight: 700;
+    }
+    .legend {
+      position: absolute; bottom: 16px; left: 16px;
+      background: rgba(255,255,255,0.95);
+      padding: 10px 12px; border-radius: 12px;
+      font-size: 14px; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    .legend .row { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+    .dot { display: inline-block; border-radius: 50%; }
+    .leaflet-tooltip { 
+      background: rgba(255,255,255,0.96);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      color: #111827;
+      padding: 10px 12px;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      max-width: 320px;
+    }
+    .tooltip-title { font-weight: 700; margin-bottom: 4px; }
+    .tooltip-sub { color: #4b5563; margin-bottom: 6px; font-size: 12px; }
+    .tooltip-list { margin: 0; padding-left: 18px; font-size: 13px; }
+  </style>
+</head>
+<body>
+<div class="title">FCN 2025 – Participant Origins (Europe)</div>
+<div id="map"></div>
+<div class="legend">
+  <div><strong>Participants per city</strong></div>
+  <div class="row"><span class="dot" style="width:10px;height:10px;background:#0ea5e9;"></span> 1</div>
+  <div class="row"><span class="dot" style="width:16px;height:16px;background:#0ea5e9;"></span> 2–3</div>
+  <div class="row"><span class="dot" style="width:22px;height:22px;background:#0ea5e9;"></span> 4–5</div>
+  <div class="row"><span class="dot" style="width:30px;height:30px;background:#0ea5e9;"></span> ≥6</div>
+</div>
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin="">
+</script>
+<script>
+  const map = L.map('map', {zoomSnap: 0.25}).setView([54.5, 10], 4.2);
+  const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  function sizeFor(n) {
+    if (n >= 6) return 30;
+    if (n >= 4) return 22;
+    if (n >= 2) return 16;
+    return 10;
+  }
+  function colorFor(n) {
+    if (n >= 6) return "#9e1519";
+    if (n >= 4) return "#7e1519";
+    if (n >= 2) return "#5e1519";
+    return "#3e1519";
+  }
+
+  const points = [
+    {lat:51.22, lon:4.48, n:1, city:"Antwerp/Leuven*", country:"Belgium", tooltip:"<div class=\"tooltip-title\">Antwerp/Leuven*</div><div class=\"tooltip-sub\">Belgium &middot; Participants: 1</div><ul class=\"tooltip-list\"><li>Alexandre da Silva Veith (<i>Nokia Bell Labs (Belgium)</i>)</li></ul>"},
+    {lat:50.67, lon:4.61, n:1, city:"Louvain-la-Neuve", country:"Belgium", tooltip:"<div class=\"tooltip-title\">Louvain-la-Neuve</div><div class=\"tooltip-sub\">Belgium &middot; Participants: 1</div><ul class=\"tooltip-list\"><li>Martin Andraud (<i>UC Louvain</i>)</li></ul>"},
+    {lat:55.4, lon:10.39, n:2, city:"Odense", country:"Denmark", tooltip:"<div class=\"tooltip-title\">Odense</div><div class=\"tooltip-sub\">Denmark &middot; Participants: 2</div><ul class=\"tooltip-list\"><li>Sani Abdullahi (<i>University of Southern Denmark (SDU)</i>)</li><li>Aslak Johansen (<i>University of Southern Denmark (SDU)</i>)</li></ul>"},
+    {lat:52.52, lon:13.4, n:3, city:"Berlin", country:"Germany", tooltip:"<div class=\"tooltip-title\">Berlin</div><div class=\"tooltip-sub\">Germany &middot; Participants: 3</div><ul class=\"tooltip-list\"><li>Ingmar Poese (<i>BENOCS</i>)</li><li>Michell Boerger (<i>Fraunhofer FOKUS</i>)</li><li>Nikolay Tcholtchev (<i>Fraunhofer FOKUS</i>)</li></ul>"},
+    {lat:51.45, lon:6.78, n:5, city:"Essen/Duisburg", country:"Germany", tooltip:"<div class=\"tooltip-title\">Essen/Duisburg</div><div class=\"tooltip-sub\">Germany &middot; Participants: 5</div><ul class=\"tooltip-list\"><li>Torben Weis (<i>University of Duisburg-Essen</i>)</li><li>Gerald Kämmerer (<i>University of Duisburg-Essen</i>)</li><li>Malte Josten (<i>University of Duisburg-Essen</i>)</li><li>Rene Lehmann (<i>University of Duisburg-Essen</i>)</li><li>Peter Zdankin (<i>University of Duisburg-Essen</i>)</li></ul>"},
+    {lat:53.55, lon:9.99, n:13, city:"Hamburg", country:"Germany", tooltip:"<div class=\"tooltip-title\">Hamburg</div><div class=\"tooltip-sub\">Germany &middot; Participants: 13</div><ul class=\"tooltip-list\"><li>Janick Edinger (<i>University of Hamburg</i>)</li><li>Anton Semjonov (<i>University of Hamburg</i>)</li><li>Philipp Kisters (<i>University of Hamburg</i>)</li><li>Lennart Bengtson (<i>University of Hamburg</i>)</li><li>Alhassan Abdelhalim (<i>University of Hamburg</i>)</li><li>Mathias Fischer (<i>University of Hamburg</i>)</li><li>Winfried Lamersdorf (<i>University of Hamburg</i>)</li><li>Ulf Kulau (<i>TU Hamburg</i>)</li><li>Kazi Rahman (<i>TU Hamburg</i>)</li><li>Nisal Hemadasa (<i>TU Hamburg</i>)</li><li>Antonios Iosifidis (<i>TU Hamburg</i>)</li><li>Stefan Schulte (<i>TU Hamburg</i>)</li><li>Marcus Venzke (<i>TU Hamburg</i>)</li></ul>"},
+    {lat:52.38, lon:9.73, n:2, city:"Hanover", country:"Germany", tooltip:"<div class=\"tooltip-title\">Hanover</div><div class=\"tooltip-sub\">Germany &middot; Participants: 2</div><ul class=\"tooltip-list\"><li>Stefan Petrescu (<i>Leibniz University Hannover</i>)</li><li>Narcisa Guran (<i>Leibniz University Hannover</i>)</li></ul>"},
+    {lat:49.41, lon:8.68, n:1, city:"Heidelberg", country:"Germany", tooltip:"<div class=\"tooltip-title\">Heidelberg</div><div class=\"tooltip-sub\">Germany &middot; Participants: 1</div><ul class=\"tooltip-list\"><li>Mostafa Haghi (<i>Heidelberg University</i>)</li></ul>"},
+    {lat:49.44, lon:7.77, n:1, city:"Kaiserslautern", country:"Germany", tooltip:"<div class=\"tooltip-title\">Kaiserslautern</div><div class=\"tooltip-sub\">Germany &middot; Participants: 1</div><ul class=\"tooltip-list\"><li>Gerhard Fohler (<i>RPTU Kaiserslautern</i>)</li></ul>"},
+    {lat:54.32, lon:10.12, n:1, city:"Kiel", country:"Germany", tooltip:"<div class=\"tooltip-title\">Kiel</div><div class=\"tooltip-sub\">Germany &middot; Participants: 1</div><ul class=\"tooltip-list\"><li>Laura Harms (<i>Kiel University</i>)</li></ul>"},
+    {lat:53.87, lon:10.69, n:1, city:"Lübeck", country:"Germany", tooltip:"<div class=\"tooltip-title\">Lübeck</div><div class=\"tooltip-sub\">Germany &middot; Participants: 1</div><ul class=\"tooltip-list\"><li>Stefan Fischer (<i>University of Lübeck</i>)</li></ul>"},
+    {lat:48.78, lon:9.18, n:4, city:"Stuttgart", country:"Germany", tooltip:"<div class=\"tooltip-title\">Stuttgart</div><div class=\"tooltip-sub\">Germany &middot; Participants: 4</div><ul class=\"tooltip-list\"><li>Christian Becker (<i>University of Stuttgart</i>)</li><li>Michael Schramm (<i>University of Stuttgart</i>)</li><li>Melanie Heck (<i>University of Stuttgart</i>)</li><li>Volker Hilt (<i>Nokia Bell Labs (Germany)</i>)</li></ul>"},
+    {lat:58.38, lon:26.72, n:1, city:"Tartu", country:"Estonia", tooltip:"<div class=\"tooltip-title\">Tartu</div><div class=\"tooltip-sub\">Estonia &middot; Participants: 1</div><ul class=\"tooltip-list\"><li>Huber Flores (<i>University of Tartu</i>)</li></ul>"},
+    {lat:60.21, lon:24.65, n:1, city:"Espoo", country:"Finland", tooltip:"<div class=\"tooltip-title\">Espoo</div><div class=\"tooltip-sub\">Finland &middot; Participants: 1</div><ul class=\"tooltip-list\"><li>Stephan Sigg (<i>Aalto University</i>)</li></ul>"},
+    {lat:65.01, lon:25.47, n:2, city:"Oulu", country:"Finland", tooltip:"<div class=\"tooltip-title\">Oulu</div><div class=\"tooltip-sub\">Finland &middot; Participants: 2</div><ul class=\"tooltip-list\"><li>Erkki Harjula (<i>University of Oulu</i>)</li><li>Lauri Loven (<i>University of Oulu</i>)</li></ul>"},
+    {lat:43.61, lon:7.05, n:1, city:"Sophia Antipolis", country:"France", tooltip:"<div class=\"tooltip-title\">Sophia Antipolis</div><div class=\"tooltip-sub\">France &middot; Participants: 1</div><ul class=\"tooltip-list\"><li>Roberto Morabito (<i>EURECOM</i>)</li></ul>"},
+    {lat:38.25, lon:21.73, n:1, city:"Patras", country:"Greece", tooltip:"<div class=\"tooltip-title\">Patras</div><div class=\"tooltip-sub\">Greece &middot; Participants: 1</div><ul class=\"tooltip-list\"><li>Georgios Bouloukakis (<i>University of Patras</i>)</li></ul>"},
+    {lat:53.35, lon:-6.26, n:1, city:"Dublin", country:"Ireland", tooltip:"<div class=\"tooltip-title\">Dublin</div><div class=\"tooltip-sub\">Ireland &middot; Participants: 1</div><ul class=\"tooltip-list\"><li>Bart Siniarski (<i>University College Dublin</i>)</li></ul>"},
+    {lat:41.9, lon:12.5, n:1, city:"Rome", country:"Italy", tooltip:"<div class=\"tooltip-title\">Rome</div><div class=\"tooltip-sub\">Italy &middot; Participants: 1</div><ul class=\"tooltip-list\"><li>Valeria Cardellini (<i>University of Rome Tor Vergata</i>)</li></ul>"},
+    {lat:52.37, lon:4.9, n:1, city:"Amsterdam", country:"Netherlands", tooltip:"<div class=\"tooltip-title\">Amsterdam</div><div class=\"tooltip-sub\">Netherlands &middot; Participants: 1</div><ul class=\"tooltip-list\"><li>Sudaksh Kalra (<i>University of Amsterdam (UvA)</i>)</li></ul>"},
+    {lat:51.99, lon:4.36, n:5, city:"Delft", country:"Netherlands", tooltip:"<div class=\"tooltip-title\">Delft</div><div class=\"tooltip-sub\">Netherlands &middot; Participants: 5</div><ul class=\"tooltip-list\"><li>Aaron Ding (<i>TU Delft</i>)</li><li>Cilia Baanstra (<i>TU Delft</i>)</li><li>Dewant Katare (<i>TU Delft</i>)</li><li>Reza Sabzevari (<i>TU Delft</i>)</li><li>Simone Nicosanti (<i>TU Delft / University of Rome Tor Vergata</i>)</li></ul>"},
+    {lat:52.22, lon:6.89, n:1, city:"Enschede", country:"Netherlands", tooltip:"<div class=\"tooltip-title\">Enschede</div><div class=\"tooltip-sub\">Netherlands &middot; Participants: 1</div><ul class=\"tooltip-list\"><li>Fatemeh Marzani (<i>University of Twente</i>)</li></ul>"},
+    {lat:46.62, lon:14.31, n:1, city:"Klagenfurt", country:"Austria", tooltip:"<div class=\"tooltip-title\">Klagenfurt</div><div class=\"tooltip-sub\">Austria &middot; Participants: 1</div><ul class=\"tooltip-list\"><li>Reza Farahani (<i>University of Klagenfurt</i>)</li></ul>"},
+    {lat:55.86, lon:-4.25, n:2, city:"Glasgow", country:"Scotland (UK)", tooltip:"<div class=\"tooltip-title\">Glasgow</div><div class=\"tooltip-sub\">Scotland (UK) &middot; Participants: 2</div><ul class=\"tooltip-list\"><li>Lauritz Thamsen (<i>University of Glasgow</i>)</li><li>Kathleen West (<i>University of Glasgow</i>)</li></ul>"},
+    {lat:63.83, lon:20.26, n:1, city:"Umeå", country:"Sweden", tooltip:"<div class=\"tooltip-title\">Umeå</div><div class=\"tooltip-sub\">Sweden &middot; Participants: 1</div><ul class=\"tooltip-list\"><li>Feras M. Awaysheh (<i>Umeå University</i>)</li></ul>"},
+    {lat:52.21, lon:0.12, n:1, city:"Cambridge", country:"UK", tooltip:"<div class=\"tooltip-title\">Cambridge</div><div class=\"tooltip-sub\">UK &middot; Participants: 1</div><ul class=\"tooltip-list\"><li>Al Amjad Tawfiq Isstaif (<i>University of Cambridge</i>)</li></ul>"},
+    {lat:53.96, lon:-1.08, n:1, city:"York", country:"UK", tooltip:"<div class=\"tooltip-title\">York</div><div class=\"tooltip-sub\">UK &middot; Participants: 1</div><ul class=\"tooltip-list\"><li>Poonam Yadav (<i>University of York</i>)</li></ul>"},
+    {lat:35.18, lon:33.36, n:1, city:"Nicosia", country:"Cyprus", tooltip:"<div class=\"tooltip-title\">Nicosia</div><div class=\"tooltip-sub\">Cyprus &middot; Participants: 1</div><ul class=\"tooltip-list\"><li>Demetris Trihinas (<i>University of Nicosia</i>)</li></ul>"}
+  ];
+
+  points.forEach(p => {
+    const circle = L.circleMarker([p.lat, p.lon], {
+      radius: sizeFor(p.n),
+      color: colorFor(p.n),
+      weight: 1,
+      opacity: 1,
+      fillColor: colorFor(p.n),
+      fillOpacity: 0.9
+    }).addTo(map);
+    circle.bindTooltip(p.tooltip, {sticky: true, opacity: 0.95, direction: 'top'});
+  });
+
+  // Fit bounds
+  const latlngs = points.map(p => [p.lat, p.lon]);
+  const bounds = L.latLngBounds(latlngs);
+  map.fitBounds(bounds.pad(0.15));
+</script>
+</body>
+</html>
