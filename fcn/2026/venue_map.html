@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>FCN2025 FoodMap</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      #legend {
+        background: #fff;
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        left: 10px;
+        border-radius: 5px;
+        width: 180px;
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        font-family: "Abel Regular", sans-serif;
+        font-size: 80%;
+      }
+
+      #legend ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      #legend ul li {
+        margin-bottom: 7px;
+        padding-left: 45px;
+        position: relative;
+      }
+
+      #legend ul li::before {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 35px;
+        height: 8px;
+        border-radius: 4px;
+        background-color: gray;
+      }
+
+      #legend ul li.walk_dammtor::before {
+        background: linear-gradient(80deg, lime, green);
+      }
+      #legend ul li.walk_mensen::before {
+        background: linear-gradient(80deg, orange, purple);
+      }
+      #legend ul li.walk_boat::before {
+        background: linear-gradient(80deg, teal, navy);
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="legend">
+      <ul>
+        <li class="walk_dammtor">Path from Dammtor</li>
+        <li class="walk_mensen">Lunch at a Mensa</li>
+        <li class="walk_boat">Walk to the Boat</li>
+      </ul>
+    </nav>
+    <div id="map"></div>
+
+    <script>
+      // https://account.mapbox.com
+      mapboxgl.accessToken = "pk.eyJ1IjoiYW5zbTIzIiwiYSI6ImNtZnY3dzR3dTA0bmMybHM5cGUzOHh4YngifQ.ApulpM6gM6s_EBIVrk3NHA";
+      const map = new mapboxgl.Map({
+        container: "map",
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: "mapbox://styles/mapbox/standard",
+        // style: "mapbox://styles/mapbox/light-v11",
+        // style: "mapbox://styles/mapbox/navigation-day-v1",
+        // style: "mapbox://styles/mapbox/streets-v12",
+        center: [9.987237, 53.563886], // ~ Moorweidestraße
+        center: [9.986811699530989, 53.56489809127609], // ~ Schülterstraße
+        zoom: 15,
+        maxZoom: 20,
+        pitch: 40,
+        // pitch: 0,
+        bearing: 35,
+        maxPitch: 45,
+        minPitch: 0,
+      });
+
+      // create a default marker for the event location
+      const fcn = new mapboxgl.Marker({ scale: 1.6 }).setLngLat([9.988745, 53.562667]).addTo(map);
+
+      // add button to locate the user
+      map.addControl(
+        new mapboxgl.GeolocateControl({
+          positionOptions: { enableHighAccuracy: true },
+          trackUserLocation: true,
+          showUserHeading: true,
+        }),
+      );
+
+      // add fullscreen button
+      map.addControl(new mapboxgl.FullscreenControl());
+
+      // add zoom and rotation controls to the map
+      map.addControl(new mapboxgl.NavigationControl());
+
+      // add map scale in bottom left
+      map.addControl(new mapboxgl.ScaleControl());
+
+      map.on("style.load", () => {
+        // trace the path from dammtor station
+        map.addSource("path_from_dammtor", {
+          type: "geojson",
+          lineMetrics: true,
+          data: {
+            type: "LineString",
+            coordinates: [
+              [9.989845, 53.560983],
+              [9.989391, 53.561327],
+              [9.98937, 53.561459],
+              [9.989697, 53.561676],
+              [9.988042, 53.562525],
+              [9.988163, 53.562608],
+              [9.98838, 53.562496],
+              [9.988678, 53.562698],
+            ],
+          },
+        });
+        map.addLayer({
+          id: "path_from_dammtor",
+          source: "path_from_dammtor",
+          type: "line",
+          layout: {
+            "visibility": "visible",
+            "line-join": "round",
+            "line-cap": "round",
+          },
+          paint: {
+            "line-width": 8,
+            "line-gradient": ["interpolate", ["linear"], ["line-progress"], 0, "lime", 1, "green"],
+          },
+        });
+
+        // trace the path to boat ride
+        map.addSource("path_to_boat", {
+          type: "geojson",
+          lineMetrics: true,
+          data: {
+            type: "LineString",
+            coordinates: [
+              [9.988678, 53.562698],
+              [9.98945, 53.563208],
+              [9.989335, 53.563632],
+              [9.989638, 53.563774],
+              [9.992377, 53.564032],
+              [9.99269, 53.564202],
+              [9.99339, 53.564269],
+              [9.99405, 53.564808],
+              [9.994337, 53.564777],
+              [9.994305, 53.564644],
+              [9.994643, 53.564621],
+              [9.994745, 53.564833],
+              [9.998092, 53.564755],
+              [9.998393, 53.564659],
+              [9.998454, 53.564612],
+              [9.99857, 53.564491],
+              [9.998886, 53.564347],
+              [9.999562, 53.564744],
+              [9.99975, 53.564906],
+              [10.000075, 53.565322],
+              [10.000466, 53.565778],
+              [10.001016, 53.566307],
+              [10.001255, 53.566622],
+              [10.001375, 53.566976],
+              [10.001349, 53.567213],
+              [10.001314, 53.567409],
+              [10.002263, 53.567301],
+            ],
+          },
+        });
+        map.addLayer({
+          id: "path_to_boat",
+          source: "path_to_boat",
+          type: "line",
+          layout: {
+            "visibility": "visible",
+            "line-join": "round",
+            "line-cap": "round",
+          },
+          paint: {
+            "line-width": 8,
+            "line-gradient": ["interpolate", ["linear"], ["line-progress"], 0, "teal", 1, "navy"],
+          },
+        });
+
+        // trace the path to the mensa
+        map.addSource("path_to_mensa", {
+          type: "geojson",
+          lineMetrics: true,
+          data: {
+            type: "LineString",
+            coordinates: [
+              [9.988678, 53.562698],
+              [9.989225, 53.563089],
+              [9.988085, 53.563661],
+              [9.988029, 53.563763],
+              [9.987726, 53.563984],
+              [9.986395, 53.564781],
+              [9.98639, 53.565026],
+              [9.986288, 53.565104],
+              [9.98599, 53.565239],
+              [9.985658, 53.565466],
+              [9.985489, 53.565518],
+              [9.98496, 53.565921],
+              [9.98503, 53.566069],
+              [9.985062, 53.566875],
+            ],
+          },
+        });
+        map.addLayer({
+          id: "path_to_mensa",
+          source: "path_to_mensa",
+          type: "line",
+          layout: {
+            "visibility": "visible",
+            "line-join": "round",
+            "line-cap": "round",
+          },
+          paint: {
+            "line-width": 8,
+            "line-gradient": ["interpolate", ["linear"], ["line-progress"], 0, "orange", 1, "purple"],
+          },
+        });
+
+        // list of food places to show
+        const mensen = [
+          {
+            title: "Mensa: Schlüters (Pizza & More)",
+            coordinates: [9.985725, 53.565622],
+            href: "https://www.stwhh.de/en/gastronomie/cafeterias-cafes-other/cafeteria/schlueters-pizza-more",
+            img: "https://www.stwhh.de/fileadmin/_processed_/3/4/csm_Schlueters_4_7312662445.jpg",
+            size: 60,
+            border: "#ff7f00",
+          },
+          {
+            title: "Mensa: Studierendenhaus",
+            coordinates: [9.986317, 53.565775],
+            href: "https://www.stwhh.de/en/gastronomie/cafeterias-cafes-other/cafeteria/cafeteria-studierendenhaus",
+            img: "https://www.stwhh.de/fileadmin/_processed_/1/1/csm_Mensa_StudHaus_Gastraum_mitStudis_4934c8f2e5.jpg",
+            size: 60,
+            border: "#ff7f00",
+          },
+          {
+            title: "Mensa: Philturm",
+            coordinates: [9.985156, 53.567036],
+            href: "https://www.stwhh.de/en/gastronomie/cafeterias-cafes-other/cafeteria/cafeteria-philturm",
+            img: "https://www.stwhh.de/fileadmin/_processed_/4/8/csm_Mensa_PhilTurm_Schweinebraten_Gastraum_56e4cffcd9.jpg",
+            size: 55,
+            border: "#ff7f00",
+          },
+          // {
+          //   title: "Café am Mittelweg",
+          //   coordinates: [9.995091, 53.564053],
+          //   href: "https://www.stwhh.de/gastronomie/mensen-cafes-weiteres/mensa/cafe-am-mittelweg",
+          //   img: "https://www.stwhh.de/fileadmin/_processed_/6/7/csm_Cafe_Mittelweg_Gastraum03_e89492016a.jpg",
+          //   size: 50,
+          //   border: "#ff7f00",
+          // },
+          // {
+          //   title: "Bahnhof Dammtor",
+          //   coordinates: [9.989611, 53.560846],
+          //   href: "https://geofox.hvv.de/web/de/connections?execute=true&start=Hamburg%20Airport%20(Flughafen)&destination=Edmund-Siemers-Allee%201,%20Hamburg&de=Do,%2025.09.2025&date=25.09.2025&ze=09:00%20Uhr&time=09:00&timeIsDeparture=1&suchen=",
+          //   img: "https://historische-s-bahn.hamburg/wp-content/uploads/2016/11/cropped-S-Logo-2.png",
+          //   size: 40,
+          //   border: "#ee3346",
+          // },
+          {
+            title: "Otto's Burger",
+            coordinates: [9.982949, 53.568675],
+            href: "https://www.ottosburger.com/",
+            img: "https://images.squarespace-cdn.com/content/v1/5aec4039a2772c28c8ce0d0f/1569325442516-F573OHP1U3QOYNB50YG2/OttosBurger_Grindel_8.jpg?format=750w",
+            size: 50,
+            border: "#8b0b02",
+          },
+          {
+            title: "Baborrito: Lost in Mexiko",
+            coordinates: [9.983828, 53.564957],
+            href: "https://baborrito.eatbu.com/",
+            img: "https://cdn.website.dish.co/media/bb/5a/7810683/Baborrito-15-jpg.jpg",
+            size: 50,
+            border: "#0f1418",
+          },
+          {
+            title: "Walk to the boat ride",
+            coordinates: [10.002263, 53.567301],
+            href: "https://maps.app.goo.gl/e9AitfCiGzTLgMaM9",
+            img: "https://alstertouristik.de/wp-content/uploads/2020/02/GettyImages-155436991-1536x678.jpg",
+            size: 50,
+            border: "white",
+          },
+        ];
+
+        // add the markers to the map
+        for (const m of mensen) {
+          const marker = document.createElement("a");
+          marker.title = m.title;
+          marker.href = m.href;
+          marker.target = "_blank";
+          marker.className = "marker";
+          marker.style.backgroundImage = `url(${m.img})`;
+          marker.style.backgroundRepeat = "no-repeat";
+          marker.style.backgroundAttachment = "fixed";
+          marker.style.backgroundPosition = "center";
+          marker.style.backgroundSize = "cover";
+          marker.style.width = `${m.size}px`;
+          marker.style.height = `${m.size}px`;
+          marker.style.borderRadius = "100%";
+          marker.style.border = `5px solid ${m.border}`;
+          new mapboxgl.Marker(marker).setLngLat(m.coordinates).addTo(map);
+        }
+      });
+
+      // map.on("mousemove", (e) => {
+      //   // `e.point` is the x, y coordinates of the `mousemove` event relative to the top-left corner of the map.
+      //   // `e.lngLat` is the longitude, latitude geographical position of the event.
+      //   console.log(e.point, e.lngLat);
+      // });
+    </script>
+  </body>
+</html>
