@@ -406,3 +406,18 @@ footer a, footer a:hover {
   transform: translate(-50%, -75%);
   -ms-transform: translate(-50%, -75%);
 }
+
+/* Fix for the Programme Table: 
+   Prevents the 'Time' column from wrapping into two lines 
+*/
+table td:first-child, 
+table th:first-child {
+    white-space: nowrap;
+    width: 1%; /* Shrinks column to fit text exactly */
+    padding-right: 20px; /* Adds a little breathing room */
+}
+
+/* Optional: Ensures long speaker names don't break the layout */
+table td:nth-child(2) {
+    word-break: normal;
+}
