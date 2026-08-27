@@ -1,0 +1,60 @@
+---
+layout: page
+---
+
+<div class="projects-page">
+
+  <div class="projects-intro">
+    <p>
+      CPI Lab participates in national and international research
+      initiatives addressing challenges across cyber-physical systems,
+      distributed intelligence, trustworthy AI, data sharing, security,
+      networking, and digital infrastructures.
+    </p>
+  </div>
+
+  {% assign active_projects = site.projects
+  | where: "status", "Active"
+  | sort: "title"
+  %}
+
+  {% assign completed_projects = site.projects
+  | where: "status", "Completed"
+  | sort: "title"
+  %}
+
+
+  {% if active_projects.size > 0 %}
+  <section class="projects-section">
+
+    <h2>Active Projects</h2>
+
+    <div class="projects-grid">
+
+      {% for project in active_projects %}
+      {% include project-card.html project=project %}
+      {% endfor %}
+
+    </div>
+
+  </section>
+  {% endif %}
+
+
+  {% if completed_projects.size > 0 %}
+  <section class="projects-section">
+
+    <h2>Completed Projects</h2>
+
+    <div class="projects-grid">
+
+      {% for project in completed_projects %}
+      {% include project-card.html project=project %}
+      {% endfor %}
+
+    </div>
+
+  </section>
+  {% endif %}
+
+</div>
