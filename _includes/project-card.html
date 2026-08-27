@@ -1,0 +1,46 @@
+<article class="project-card">
+
+    {% if include.project.image %}
+    <a
+            href="{{ include.project.url | relative_url }}"
+            class="project-card-image"
+    >
+        <img
+                src="{{ include.project.image | relative_url }}"
+                alt="{{ include.project.title }}"
+                loading="lazy"
+        >
+    </a>
+    {% endif %}
+
+
+    <div class="project-card-content">
+
+        {% if include.project.programme %}
+        <span class="project-card-programme">
+        {{ include.project.programme }}
+      </span>
+        {% endif %}
+
+        <h3 class="project-card-title">
+            <a href="{{ include.project.url | relative_url }}">
+                {{ include.project.title }}
+            </a>
+        </h3>
+
+        {% if include.project.description %}
+        <p class="project-card-description">
+            {{ include.project.description }}
+        </p>
+        {% endif %}
+
+        <a
+                href="{{ include.project.url | relative_url }}"
+                class="project-card-link"
+        >
+            View project →
+        </a>
+
+    </div>
+
+</article>

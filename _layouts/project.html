@@ -1,0 +1,114 @@
+---
+layout: page
+---
+
+<div class="project-profile">
+
+    <header class="project-profile-header">
+
+        <div class="project-profile-main">
+
+            {% if page.status %}
+            <span class="project-status">
+          {{ page.status }}
+        </span>
+            {% endif %}
+
+            <h1>{{ page.title }}</h1>
+
+            {% if page.description %}
+            <p class="project-description">
+                {{ page.description }}
+            </p>
+            {% endif %}
+
+            <div class="project-links">
+
+                {% if page.links.website %}
+                <a
+                        href="{{ page.links.website }}"
+                        target="_blank"
+                        rel="noopener"
+                        class="project-link"
+                >
+                    Official Website
+                </a>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        {% if page.image %}
+        <div class="project-profile-image">
+            <img
+                    src="{{ page.image | relative_url }}"
+                    alt="{{ page.title }}"
+            >
+        </div>
+        {% endif %}
+
+    </header>
+
+
+    {% if page.programme or page.duration or page.funding or page.coordinator %}
+    <section class="project-meta">
+
+        {% if page.programme %}
+        <div class="project-meta-item">
+            <span>Programme</span>
+            <strong>{{ page.programme }}</strong>
+        </div>
+        {% endif %}
+
+        {% if page.duration %}
+        <div class="project-meta-item">
+            <span>Duration</span>
+            <strong>{{ page.duration }}</strong>
+        </div>
+        {% endif %}
+
+        {% if page.funding %}
+        <div class="project-meta-item">
+            <span>Funding</span>
+            <strong>{{ page.funding }}</strong>
+        </div>
+        {% endif %}
+
+        {% if page.coordinator %}
+        <div class="project-meta-item">
+            <span>Coordinator</span>
+            <strong>{{ page.coordinator }}</strong>
+        </div>
+        {% endif %}
+
+    </section>
+    {% endif %}
+
+
+    {% if page.cpi_members %}
+    <section class="project-section">
+
+        <h2>CPI Lab Team</h2>
+
+        <div class="member-grid">
+            {% for member_name in page.cpi_members %}
+
+            {% assign member = site.members | where: "title", member_name | first %}
+
+            {% if member %}
+            {% include member-card.html member=member %}
+            {% endif %}
+
+            {% endfor %}
+        </div>
+
+    </section>
+    {% endif %}
+
+
+    <section class="project-section project-content">
+        {{ content }}
+    </section>
+
+</div>
