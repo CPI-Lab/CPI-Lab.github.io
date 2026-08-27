@@ -1,3 +1,18 @@
+// CPI Lab colours
+$cpi-blue: #0066CC;
+$cpi-cyan: #18B7E8;
+$cpi-navy: #163A5F;
+$cpi-charcoal: #1F2937;
+
+a:not(.btn) {
+  text-decoration-color: rgba($cpi-blue, 0.25);
+
+  &:hover,
+  &:focus {
+    text-decoration-color: $cpi-cyan;
+  }
+}
+
 .dl-table {
   a {
     @supports ((text-decoration-thickness: initial) and (text-underline-offset: initial)) {
@@ -144,6 +159,439 @@
 
   .member-profile-photo {
     max-width: 220px;
+  }
+
+}
+
+/* ============================================================
+   CPI Lab Home
+   ============================================================ */
+
+.cpi-home {
+  --cpi-blue: #0066cc;
+  --cpi-cyan: #18b7e8;
+  --cpi-navy: #163a5f;
+  --cpi-charcoal: #1f2937;
+  --cpi-muted: #667085;
+  --cpi-border: rgba(127, 127, 127, 0.2);
+
+  width: 100%;
+}
+
+
+/* HERO
+   ============================================================ */
+
+.cpi-hero {
+  min-height: 68vh;
+  display: flex;
+  align-items: center;
+  padding: 5rem 0 6rem;
+}
+
+.cpi-hero-content {
+  max-width: 850px;
+}
+
+.cpi-eyebrow,
+.cpi-section-heading > span {
+  display: block;
+  margin-bottom: 1rem;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  color: var(--cpi-blue);
+}
+
+.cpi-hero h1 {
+  margin: 0;
+
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+
+  color: var(--cpi-charcoal);
+}
+
+.cpi-hero-description {
+  max-width: 650px;
+
+  margin-top: 2rem;
+  margin-bottom: 0;
+
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  line-height: 1.5;
+
+  color: var(--cpi-muted);
+}
+
+.cpi-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+
+  margin-top: 2.5rem;
+}
+
+
+/* BUTTONS
+   ============================================================ */
+
+.cpi-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 46px;
+
+  padding: 0.7rem 1.25rem;
+
+  border-radius: 4px;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  text-decoration: none;
+}
+
+.cpi-button-primary {
+  background: var(--cpi-blue);
+  color: #fff;
+}
+
+.cpi-button-primary:hover {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+.cpi-button-secondary {
+  border: 1px solid var(--cpi-border);
+}
+
+.cpi-button-secondary:hover {
+  text-decoration: none;
+}
+
+
+/* GENERIC SECTIONS
+   ============================================================ */
+
+.cpi-section {
+  padding: 5rem 0;
+  border-top: 1px solid var(--cpi-border);
+}
+
+.cpi-section-heading {
+  max-width: 700px;
+  margin-bottom: 3rem;
+}
+
+.cpi-section-heading h2,
+.cpi-community h2 {
+  margin: 0 0 1rem;
+
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.1;
+
+  letter-spacing: -0.035em;
+}
+
+.cpi-section-heading p {
+  max-width: 650px;
+
+  margin: 0;
+
+  font-size: 1.1rem;
+  line-height: 1.65;
+
+  color: var(--cpi-muted);
+}
+
+
+/* ABOUT
+   ============================================================ */
+
+.cpi-intro {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.9fr) minmax(300px, 1.1fr);
+
+  gap: 4rem;
+}
+
+.cpi-intro .cpi-section-heading {
+  margin-bottom: 0;
+}
+
+.cpi-intro-text {
+  font-size: 1.15rem;
+  line-height: 1.75;
+}
+
+.cpi-intro-text p:first-child {
+  margin-top: 0;
+}
+
+
+/* RESEARCH
+   ============================================================ */
+
+.cpi-research-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  border-top: 1px solid var(--cpi-border);
+  border-left: 1px solid var(--cpi-border);
+}
+
+.cpi-research-card {
+  min-height: 260px;
+
+  padding: 1.75rem;
+
+  border-right: 1px solid var(--cpi-border);
+  border-bottom: 1px solid var(--cpi-border);
+}
+
+.cpi-card-number {
+  display: block;
+
+  margin-bottom: 3rem;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  color: var(--cpi-blue);
+}
+
+.cpi-research-card h3 {
+  margin-bottom: 0.75rem;
+
+  font-size: 1.25rem;
+}
+
+.cpi-research-card p {
+  margin-bottom: 0;
+
+  font-size: 0.95rem;
+  line-height: 1.6;
+
+  color: var(--cpi-muted);
+}
+
+
+/* PROJECTS
+   ============================================================ */
+
+.cpi-project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 2rem;
+}
+
+.cpi-project-card {
+  overflow: hidden;
+
+  border: 1px solid var(--cpi-border);
+  border-radius: 6px;
+}
+
+.cpi-project-image {
+  display: block;
+
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.cpi-project-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 0.3s ease;
+}
+
+.cpi-project-card:hover .cpi-project-image img {
+  transform: scale(1.025);
+}
+
+.cpi-project-content {
+  padding: 1.5rem;
+}
+
+.cpi-project-status {
+  display: block;
+
+  margin-bottom: 0.6rem;
+
+  font-size: 0.7rem;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: var(--cpi-blue);
+}
+
+.cpi-project-content h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+.cpi-project-content h3 a {
+  text-decoration: none;
+}
+
+.cpi-project-content p {
+  color: var(--cpi-muted);
+
+  line-height: 1.6;
+}
+
+.cpi-text-link {
+  font-weight: 600;
+
+  text-decoration: none;
+}
+
+
+/* ACHIEVEMENTS
+   ============================================================ */
+
+.cpi-achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 1px;
+
+  background: var(--cpi-border);
+  border: 1px solid var(--cpi-border);
+}
+
+.cpi-achievement-featured,
+.cpi-achievement {
+  min-height: 280px;
+
+  padding: 2rem;
+
+  background: var(--body-bg, #fff);
+}
+
+.cpi-achievement-label,
+.cpi-achievement > span {
+  display: block;
+
+  margin-bottom: 2rem;
+
+  font-size: 0.72rem;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: var(--cpi-blue);
+}
+
+.cpi-achievement-featured strong {
+  display: block;
+
+  margin-bottom: 1.25rem;
+
+  font-size: clamp(3rem, 7vw, 5rem);
+  line-height: 1;
+
+  letter-spacing: -0.05em;
+
+  color: var(--cpi-blue);
+}
+
+.cpi-achievement-featured h3,
+.cpi-achievement h3 {
+  margin-bottom: 0.8rem;
+}
+
+.cpi-achievement-featured p,
+.cpi-achievement p {
+  max-width: 430px;
+
+  margin-bottom: 0;
+
+  line-height: 1.6;
+
+  color: var(--cpi-muted);
+}
+
+
+/* COMMUNITY
+   ============================================================ */
+
+.cpi-community {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+
+  gap: 3rem;
+
+  padding-bottom: 7rem;
+}
+
+.cpi-community > div {
+  max-width: 650px;
+}
+
+.cpi-community p {
+  font-size: 1.1rem;
+  color: var(--cpi-muted);
+}
+
+
+/* RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 850px) {
+
+  .cpi-intro {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .cpi-research-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .cpi-hero {
+    min-height: auto;
+    padding: 4rem 0;
+  }
+
+  .cpi-section {
+    padding: 3.5rem 0;
+  }
+
+  .cpi-research-grid,
+  .cpi-project-grid,
+  .cpi-achievements-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cpi-community {
+    display: block;
+  }
+
+  .cpi-community .cpi-button {
+    margin-top: 1.5rem;
   }
 
 }

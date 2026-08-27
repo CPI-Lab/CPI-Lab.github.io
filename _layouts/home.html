@@ -1,0 +1,339 @@
+---
+layout: default
+---
+
+<div class="cpi-home">
+
+    <!-- HERO -->
+    <section class="cpi-hero">
+
+        <div class="cpi-hero-content">
+
+            <p class="cpi-eyebrow">
+                Delft University of Technology
+            </p>
+
+            <h1>
+                Cyber-Physical<br>
+                Intelligence Laboratory
+            </h1>
+
+            <p class="cpi-hero-description">
+                Advancing trustworthy, distributed, and intelligent
+                cyber-physical systems.
+            </p>
+
+            <div class="cpi-hero-actions">
+                <a href="#research" class="cpi-button cpi-button-primary">
+                    Explore our research
+                </a>
+
+                <a href="{{ '/members/' | relative_url }}" class="cpi-button cpi-button-secondary">
+                    Meet the team
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section class="cpi-section cpi-intro">
+
+        <div class="cpi-section-heading">
+            <span>About CPI Lab</span>
+
+            <h2>
+                Intelligence at the intersection of the cyber and physical worlds.
+            </h2>
+        </div>
+
+        <div class="cpi-intro-text">
+
+            <p>
+                The Cyber-Physical Intelligence Laboratory (CPI Lab) at Delft
+                University of Technology conducts research on the design,
+                development, and operation of intelligent and trustworthy
+                cyber-physical systems.
+            </p>
+
+            <p>
+                Our work brings together distributed intelligence, computing,
+                networking, data, and security to enable next-generation digital
+                infrastructures and autonomous systems.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- RESEARCH -->
+    <section id="research" class="cpi-section">
+
+        <div class="cpi-section-heading">
+            <span>Research</span>
+
+            <h2>
+                Research areas
+            </h2>
+
+            <p>
+                We investigate fundamental and applied challenges across
+                interconnected intelligent systems.
+            </p>
+        </div>
+
+
+        <div class="cpi-research-grid">
+
+            <article class="cpi-research-card">
+                <span class="cpi-card-number">01</span>
+                <h3>Cyber-Physical Systems</h3>
+                <p>
+                    Architectures connecting computational intelligence with
+                    physical environments and processes.
+                </p>
+            </article>
+
+
+            <article class="cpi-research-card">
+                <span class="cpi-card-number">02</span>
+                <h3>Edge & Distributed AI</h3>
+                <p>
+                    Distributed intelligence across edge devices, infrastructure,
+                    and collaborative environments.
+                </p>
+            </article>
+
+
+            <article class="cpi-research-card">
+                <span class="cpi-card-number">03</span>
+                <h3>Trustworthy AI</h3>
+                <p>
+                    Secure, accountable, explainable, and resilient intelligent
+                    systems.
+                </p>
+            </article>
+
+
+            <article class="cpi-research-card">
+                <span class="cpi-card-number">04</span>
+                <h3>Internet of Things</h3>
+                <p>
+                    Connected devices and systems supporting intelligent,
+                    data-driven physical environments.
+                </p>
+            </article>
+
+
+            <article class="cpi-research-card">
+                <span class="cpi-card-number">05</span>
+                <h3>Networking & Security</h3>
+                <p>
+                    Resilient communication, cybersecurity, identity, access
+                    control, and trustworthy infrastructures.
+                </p>
+            </article>
+
+
+            <article class="cpi-research-card">
+                <span class="cpi-card-number">06</span>
+                <h3>Digital Twins & Data Spaces</h3>
+                <p>
+                    Trusted data exchange and digital representations supporting
+                    collaborative cyber-physical ecosystems.
+                </p>
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROJECTS -->
+    <section class="cpi-section cpi-projects-section">
+
+        <div class="cpi-section-heading">
+            <span>Projects</span>
+
+            <h2>
+                Research in action
+            </h2>
+
+            <p>
+                CPI Lab collaborates with academic, industrial, and public-sector
+                partners through national and international research initiatives.
+            </p>
+        </div>
+
+
+        {% assign projects = site.projects | sort: "date" | reverse %}
+
+        {% if projects.size > 0 %}
+
+        <div class="cpi-project-grid">
+
+            {% for project in projects limit:6 %}
+
+            <article class="cpi-project-card">
+
+                {% if project.image %}
+                <a href="{{ project.url | relative_url }}" class="cpi-project-image">
+                    <img
+                            src="{{ project.image | relative_url }}"
+                            alt="{{ project.title }}"
+                            loading="lazy"
+                    >
+                </a>
+                {% endif %}
+
+                <div class="cpi-project-content">
+
+                    {% if project.status %}
+                    <span class="cpi-project-status">
+                  {{ project.status }}
+                </span>
+                    {% endif %}
+
+                    <h3>
+                        <a href="{{ project.url | relative_url }}">
+                            {{ project.title }}
+                        </a>
+                    </h3>
+
+                    {% if project.description %}
+                    <p>
+                        {{ project.description }}
+                    </p>
+                    {% elsif project.excerpt %}
+                    <p>
+                        {{ project.excerpt | strip_html | truncate: 150 }}
+                    </p>
+                    {% endif %}
+
+                    <a href="{{ project.url | relative_url }}" class="cpi-text-link">
+                        View project →
+                    </a>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <p>
+            Project information will be available soon.
+        </p>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- ACHIEVEMENTS -->
+    <section class="cpi-section cpi-achievements">
+
+        <div class="cpi-section-heading">
+            <span>Impact</span>
+
+            <h2>
+                Achievements
+            </h2>
+        </div>
+
+
+        <div class="cpi-achievements-grid">
+
+            <article class="cpi-achievement-featured">
+
+        <span class="cpi-achievement-label">
+          Horizon Europe
+        </span>
+
+                <strong>€5M</strong>
+
+                <h3>Trustworthy Edge AI</h3>
+
+                <p>
+                    EU Horizon research grant led by CPI Lab as Consortium Director.
+                </p>
+
+            </article>
+
+
+            <article class="cpi-achievement-featured">
+
+        <span class="cpi-achievement-label">
+          Marie Skłodowska-Curie
+        </span>
+
+                <strong>€4M</strong>
+
+                <h3>Sustainable Edge AI</h3>
+
+                <p>
+                    Marie Curie Innovative Training Network with CPI Lab as
+                    Principal Investigator.
+                </p>
+
+            </article>
+
+
+            <article class="cpi-achievement">
+
+                <span>Research Community</span>
+
+                <h3>
+                    Edge AI research roadmap
+                </h3>
+
+                <p>
+                    4TU and Lorentz Center activities contributing to the first
+                    Dagstuhl seminar dedicated to the Roadmap of Edge AI.
+                </p>
+
+            </article>
+
+
+            <article class="cpi-achievement">
+
+                <span>Recognition</span>
+
+                <h3>
+                    Best Paper Award
+                </h3>
+
+                <p>
+                    Research recognised with a Best Paper Award at ACM SenSys CCIoT.
+                </p>
+            </article>
+        </div>
+    </section>
+
+
+    <!-- COMMUNITY -->
+    <section class="cpi-section cpi-community">
+        <div>
+      <span class="cpi-eyebrow">
+        Our people
+      </span>
+            <h2>
+                Researchers.
+            </h2>
+            <p>
+                Meet the researchers, students, fellows, and collaborators
+                behind CPI Lab.
+            </p>
+        </div>
+        <br>
+        <a href="{{ '/members/' | relative_url }}" class="cpi-button cpi-button-primary">
+            Meet our members
+        </a>
+    </section>
+</div>
