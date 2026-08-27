@@ -33,4 +33,24 @@ Everthing should be working now.
 
 [^1]: Requires Bundler. Install with `gem install bundler`.
 
+--- 
+
+### Filling up the Members Page
+To create a new member, add a new file to `_members/` with the following format:
+ `your-name.md`
+
+Note: Copy any of the existing files to get started, but make sure to change the `role` and `image` fields.
+Here is the list of roles you can use:
+* `director` 
+* `principal-fellow`
+* `visiting`
+* `postdoc-senior`
+* `phd`
+* `student` (msc and bsc)
+* `affiliated`
+
+If you don't have a picture, please use the placeholder as:
+
+`image: /assets/img/members/placeholder.png`
+
 [download]: https://github.com/hydecorp/hydejack-starter-kit/archive/master.zip

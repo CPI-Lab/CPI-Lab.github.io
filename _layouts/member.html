@@ -1,0 +1,96 @@
+---
+layout: page
+---
+
+<div class="member-profile">
+
+    <header class="member-profile-header">
+
+        <div class="member-profile-photo">
+            <img
+                    src="{{ page.image | default: '/assets/img/members/placeholder.jpg' | relative_url }}"
+                    alt="{{ page.title }}"
+            >
+        </div>
+
+        <div class="member-profile-intro">
+
+            <h1>{{ page.title }}</h1>
+
+            {% if page.position %}
+            <p class="member-profile-position">
+                {{ page.position }}
+            </p>
+            {% endif %}
+
+            {% if page.affiliations %}
+            <div class="member-profile-affiliations">
+                {% for affiliation in page.affiliations %}
+                <div>{{ affiliation }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="member-profile-links">
+
+                {% if page.email %}
+                <a href="mailto:{{ page.email }}">Email</a>
+                {% endif %}
+
+                {% if page.links.homepage %}
+                <a href="{{ page.links.homepage }}" target="_blank" rel="noopener">
+                    Personal Website
+                </a>
+                {% endif %}
+
+                {% if page.links.tudelft %}
+                <a href="{{ page.links.tudelft }}" target="_blank" rel="noopener">
+                    TU Delft Profile
+                </a>
+                {% endif %}
+
+                {% if page.links.research %}
+                <a href="{{ page.links.research }}" target="_blank" rel="noopener">
+                    Research Profile
+                </a>
+                {% endif %}
+
+                {% if page.links.orcid %}
+                <a href="{{ page.links.orcid }}" target="_blank" rel="noopener">
+                    ORCID
+                </a>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    {% if page.research_interests %}
+    <section class="member-profile-section">
+
+        <h2>Research Interests</h2>
+
+        <div class="member-research-interests">
+            {% for interest in page.research_interests %}
+            <span class="research-interest">{{ interest }}</span>
+            {% endfor %}
+        </div>
+
+    </section>
+    {% endif %}
+
+
+    <section class="member-profile-section">
+
+        <h2>About</h2>
+
+        <div class="member-profile-content">
+            {{ content }}
+        </div>
+
+    </section>
+
+</div>
