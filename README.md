@@ -4,7 +4,7 @@ A quicker, cleaner way to get started blogging with [Hydejack](https://hydejack.
 
 ## Quick Start
 
-### Before Running
+### Before Running - Linux
 Ruby won't work on Windows.
 For Unix-based systems, follow the instructions below to install the dependencies.
 1. Update your system `sudo apt update`
@@ -12,6 +12,15 @@ For Unix-based systems, follow the instructions below to install the dependencie
 3. Install Bundler `sudo apt install ruby-bundler`
 4. Install DevKit `sudo apt install ruby-dev`
 5. Install Node.js `sudo apt install nodejs npm`
+
+### Before Running — macOS
+For macOS systems, follow the instructions below to install the dependencies.
+1. Install Xcode Command Line Tools `xcode-select --install`
+2. Install Homebrew `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+3. Update Homebrew `brew update`
+4. Install Ruby `brew install ruby`
+5. Install Bundler `gem install bundler`
+6. Install Node.js and npm `brew install node`
 
 ### Running locally
 1. Clone repository (git users), or [download] and unzip.

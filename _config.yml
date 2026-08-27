@@ -54,7 +54,7 @@ menu:
   - title:             Projects
     url:               /projects/
   - title:             Vacancies
-    url:               /about/
+    url:               /vacancies/
   - title:             About
     url:               /about/
 
@@ -299,7 +299,7 @@ collections:
     permalink: /members/:name/
 
   featured_categories:
-    permalink:         /:name/
+    permalink:         /posts/:name/
     output:            true
 
   featured_tags:
@@ -307,7 +307,7 @@ collections:
     output:            true
 
   projects:
-    permalink:         /projects/:path/
+    permalink:         /projects/:name/
     output:            true
 
 
