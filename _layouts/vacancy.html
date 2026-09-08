@@ -1,0 +1,162 @@
+---
+layout: page
+---
+
+<div class="vacancy-profile">
+
+    <header class="vacancy-header">
+
+        <div class="vacancy-heading">
+
+            {% if page.status %}
+            <span class="vacancy-status vacancy-status-{{ page.status }}">
+          {% case page.status %}
+            {% when "open" %}
+              Open
+            {% when "soon" %}
+              Opening Soon
+            {% when "closed" %}
+              Closed
+          {% endcase %}
+        </span>
+            {% endif %}
+
+            <h2>{{ page.position_title }}</h2>
+
+            {% if page.description %}
+            <p class="vacancy-description">
+                {{ page.description }}
+            </p>
+            {% endif %}
+
+        </div>
+
+    </header>
+
+
+    {% if page.position_type or page.department or page.location or page.project %}
+    <section class="vacancy-meta">
+
+        {% if page.position_type %}
+        <div class="vacancy-meta-item">
+            <span>Position</span>
+            <strong>{{ page.position_type }}</strong>
+        </div>
+        {% endif %}
+
+        {% if page.department %}
+        <div class="vacancy-meta-item">
+            <span>Department</span>
+            <strong>{{ page.department }}</strong>
+        </div>
+        {% endif %}
+
+        {% if page.location %}
+        <div class="vacancy-meta-item">
+            <span>Location</span>
+            <strong>{{ page.location }}</strong>
+        </div>
+        {% endif %}
+
+        {% if page.project %}
+        <div class="vacancy-meta-item">
+            <span>Project</span>
+            <strong>{{ page.project }}</strong>
+        </div>
+        {% endif %}
+
+    </section>
+    {% endif %}
+
+
+    {% if page.supervisors %}
+    <section class="vacancy-section">
+
+        <h2>Supervision</h2>
+
+        <div class="vacancy-supervisors">
+
+            {% for supervisor_name in page.supervisors %}
+
+            {% assign supervisor = site.members
+            | where: "title", supervisor_name
+            | first
+            %}
+
+            {% if supervisor %}
+            <a
+                    href="{{ supervisor.url | relative_url }}"
+                    class="vacancy-supervisor"
+            >
+                {{ supervisor.title }}
+            </a>
+            {% else %}
+            <span class="vacancy-supervisor">
+            {{ supervisor_name }}
+          </span>
+            {% endif %}
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+    {% endif %}
+
+
+    <section class="vacancy-section vacancy-content">
+        {{ content }}
+    </section>
+
+
+    <section class="vacancy-application">
+
+        {% case page.status %}
+
+        {% when "open" %}
+
+        {% if page.application_url %}
+        <a
+                href="{{ page.application_url }}"
+                target="_blank"
+                rel="noopener"
+                class="vacancy-apply-button"
+        >
+            Apply for this position
+        </a>
+
+        <p class="vacancy-application-note">
+            Applications are handled through an external application portal.
+        </p>
+
+        {% else %}
+
+        <span class="vacancy-apply-button vacancy-apply-disabled">
+            Application link unavailable
+          </span>
+
+        {% endif %}
+
+
+        {% when "soon" %}
+
+        <span class="vacancy-apply-button vacancy-apply-disabled">
+          Applications opening soon
+        </span>
+
+        <p class="vacancy-application-note">
+            The application form for this position will be available soon.
+        </p>
+
+
+        {% when "closed" %}
+
+        <span class="vacancy-apply-button vacancy-apply-disabled">
+          Applications closed
+        </span>
+
+        {% endcase %}
+
+    </section>
+
+</div>

@@ -1,0 +1,136 @@
+---
+layout: page
+---
+
+<div class="vacancies-page">
+
+    <div class="vacancies-intro">
+        {{ content }}
+    </div>
+
+
+    <section class="vacancies-section">
+
+        <h2>Open Positions</h2>
+
+        {% assign vacancies = site.vacancies
+        | where_exp: "vacancy", "vacancy.status != 'closed'"
+        | sort: "title"
+        %}
+
+        {% if vacancies.size > 0 %}
+
+        <div class="vacancies-list">
+
+            {% for vacancy in vacancies %}
+
+            <article class="vacancy-list-item">
+
+                <div class="vacancy-list-content">
+
+                    {% if vacancy.status %}
+                    <span class="vacancy-status vacancy-status-{{ vacancy.status }}">
+                  {% case vacancy.status %}
+                    {% when "open" %}
+                      Open
+                    {% when "soon" %}
+                      Opening Soon
+                  {% endcase %}
+                </span>
+                    {% endif %}
+
+                    <h3 class="vacancy-list-title">
+                        <a href="{{ vacancy.url | relative_url }}">
+                            {{ vacancy.position_title }}
+                        </a>
+                    </h3>
+
+                    {% if vacancy.description %}
+                    <p class="vacancy-list-description">
+                        {{ vacancy.description }}
+                    </p>
+                    {% endif %}
+
+                    <div class="vacancy-list-meta">
+
+                        {% if vacancy.position_type %}
+                        <span>{{ vacancy.position_type }}</span>
+                        {% endif %}
+
+                        {% if vacancy.location %}
+                        <span>{{ vacancy.location }}</span>
+                        {% endif %}
+
+                        {% if vacancy.project %}
+                        <span>{{ vacancy.project }}</span>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <a
+                        href="{{ vacancy.url | relative_url }}"
+                        class="vacancy-view-link"
+                >
+                    View position →
+                </a>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="vacancies-empty">
+
+            <p>
+                There are currently no open positions at CPI Lab.
+                New opportunities will be published here when they become available.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+    <section class="vacancies-section">
+
+        <h2>Interested in working with us?</h2>
+
+        <p>
+            Even when no suitable position is currently advertised, prospective
+            researchers and students are welcome to follow the activities of CPI Lab
+            and explore opportunities at Delft University of Technology.
+        </p>
+
+        <p>Vacancies associated with CPI Lab may include:</p>
+
+        <ul>
+            <li>PhD positions</li>
+            <li>Postdoctoral researcher positions</li>
+            <li>Research and engineering positions</li>
+            <li>MSc thesis projects</li>
+            <li>BSc thesis projects</li>
+            <li>Research internships</li>
+            <li>Visiting researcher opportunities</li>
+        </ul>
+
+        <p>
+            For officially advertised positions at TU Delft, please consult the
+            <a
+                    href="https://www.tudelft.nl/en/working-at-tu-delft/search-jobs"
+                    target="_blank"
+                    rel="noopener"
+            >
+                TU Delft vacancies website
+            </a>.
+        </p>
+
+    </section>
+
+</div>

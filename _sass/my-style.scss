@@ -878,3 +878,277 @@ a:not(.btn) {
   }
 
 }
+
+/* ============================================================
+   Vacancies
+   ============================================================ */
+
+.vacancies-intro {
+  max-width: 760px;
+  margin-bottom: 3rem;
+
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+
+/* Listing
+   ============================================================ */
+
+.vacancies-list {
+  border-top: 1px solid rgba(127, 127, 127, 0.2);
+}
+
+.vacancy-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 2rem;
+
+  padding: 2rem 0;
+
+  border-bottom: 1px solid rgba(127, 127, 127, 0.2);
+}
+
+.vacancy-list-content {
+  max-width: 720px;
+}
+
+.vacancy-list-item h2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+
+  font-size: 1.4rem;
+}
+
+.vacancy-list-item h2 a {
+  text-decoration: none;
+}
+
+.vacancy-list-item p {
+  margin-bottom: 0;
+
+  line-height: 1.6;
+}
+
+.vacancy-view-link {
+  flex-shrink: 0;
+
+  font-weight: 600;
+  text-decoration: none;
+}
+
+
+/* Status
+   ============================================================ */
+
+.vacancy-status {
+  display: inline-block;
+
+  padding: 0.3rem 0.65rem;
+
+  border-radius: 999px;
+
+  font-size: 0.7rem;
+  font-weight: 700;
+
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.vacancy-status-open {
+  color: #0066cc;
+
+  border: 1px solid #0066cc;
+}
+
+.vacancy-status-soon {
+  color: #163a5f;
+
+  border: 1px solid #163a5f;
+}
+
+.vacancy-status-closed {
+  opacity: 0.6;
+
+  border: 1px solid currentColor;
+}
+
+
+/* Individual vacancy
+   ============================================================ */
+
+.vacancy-profile {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.vacancy-header {
+  margin-bottom: 2.5rem;
+}
+
+.vacancy-heading h1 {
+  margin-top: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.vacancy-description {
+  max-width: 760px;
+
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.vacancy-meta {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  margin: 3rem 0;
+
+  border-top: 1px solid rgba(127, 127, 127, 0.2);
+  border-left: 1px solid rgba(127, 127, 127, 0.2);
+}
+
+.vacancy-meta-item {
+  padding: 1.25rem;
+
+  border-right: 1px solid rgba(127, 127, 127, 0.2);
+  border-bottom: 1px solid rgba(127, 127, 127, 0.2);
+}
+
+.vacancy-meta-item span {
+  display: block;
+
+  margin-bottom: 0.4rem;
+
+  font-size: 0.7rem;
+  font-weight: 700;
+
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+
+  color: #0066cc;
+}
+
+.vacancy-meta-item strong {
+  font-size: 0.95rem;
+}
+
+.vacancy-section {
+  margin-top: 3rem;
+}
+
+.vacancy-content {
+  line-height: 1.7;
+}
+
+
+/* Supervisors
+   ============================================================ */
+
+.vacancy-supervisors {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 0.75rem;
+}
+
+.vacancy-supervisor {
+  padding: 0.5rem 0.8rem;
+
+  border: 1px solid rgba(127, 127, 127, 0.25);
+  border-radius: 999px;
+
+  font-weight: 600;
+  text-decoration: none;
+}
+
+
+/* Application
+   ============================================================ */
+
+.vacancy-application {
+  margin-top: 4rem;
+  padding-top: 2rem;
+
+  border-top: 1px solid rgba(127, 127, 127, 0.2);
+}
+
+.vacancy-apply-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.8rem 1.4rem;
+
+  border-radius: 4px;
+
+  background: #0066cc;
+  color: #fff;
+
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.vacancy-apply-button:hover {
+  color: #fff;
+
+  text-decoration: none;
+
+  opacity: 0.9;
+}
+
+.vacancy-apply-disabled {
+  cursor: not-allowed;
+
+  background: rgba(127, 127, 127, 0.25);
+  color: inherit;
+
+  opacity: 0.65;
+}
+
+.vacancy-application-note {
+  margin-top: 0.8rem;
+
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+
+
+/* Empty state
+   ============================================================ */
+
+.vacancies-empty {
+  padding: 3rem 0;
+}
+
+
+/* Responsive
+   ============================================================ */
+
+@media (max-width: 800px) {
+
+  .vacancy-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .vacancy-list-item {
+    display: block;
+  }
+
+  .vacancy-view-link {
+    display: inline-block;
+    margin-top: 1rem;
+  }
+
+  .vacancy-meta {
+    grid-template-columns: 1fr;
+  }
+
+}
