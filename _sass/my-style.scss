@@ -4,6 +4,16 @@ $cpi-cyan: #18B7E8;
 $cpi-navy: #163A5F;
 $cpi-charcoal: #1F2937;
 
+@media (min-width: 64em) {
+  .navbar {
+    display: none !important;
+  }
+}
+
+#_dark-mode {
+  display: none !important;
+}
+
 a:not(.btn) {
   text-decoration-color: rgba($cpi-blue, 0.25);
 
