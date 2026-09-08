@@ -178,6 +178,12 @@ defaults:
     values:
       layout: member
 
+  - scope:
+      path: ""
+      type: vacancies
+    values:
+      layout: vacancy
+
 kramdown:
   math_engine:         katex
   math_engine_opts:    {}
@@ -295,8 +301,8 @@ hydejack:
 
 collections:
   members:
-    output: true
-    permalink: /members/:name/
+    permalink:         /members/:name/
+    output:            true
 
   featured_categories:
     permalink:         /posts/:name/
@@ -308,6 +314,10 @@ collections:
 
   projects:
     permalink:         /projects/:name/
+    output:            true
+
+  vacancies:
+    permalink:         /vacancies/:name/
     output:            true
 
 

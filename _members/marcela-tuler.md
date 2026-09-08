@@ -24,10 +24,11 @@ research_interests:
   - "Privacy and Security"
 ---
 
-Marcela Tuler de Oliveira is an Assistant Professor in Trustworthy Data Systems at Delft University of Technology, within the ICT section of the Department of Engineering Systems & Services. With a background in Telecommunications Engineering, her research focuses on trustworthy digital infrastructures for secure cross-organisational data sharing.
+Marcela Tuler de Oliveira is an Assistant Professor at the Faculty of Technology, Policy and Management at TU Delft and co-director of the CPI Lab. Her research lies at the intersection of cybersecurity, distributed systems and digital governance.
 
-Her work investigates the use of Distributed Ledger Technology (DLT) to support secure data sharing, access control, traceability, and accountability. A central aspect of her research is understanding how these mechanisms can balance security requirements with scalability and performance in distributed environments.
+Her work focuses on a central challenge in digital collaboration: how organisations can share and process sensitive data without losing control over how that data is accessed and used. She develops access-control mechanisms, policy-enforcement solutions and trustworthy distributed systems that translate organisational and regulatory requirements into enforceable system behaviour.
 
-Her research spans application domains including healthcare, aviation, finance, and smart cities, with the broader goal of enabling data-driven collaboration while preserving privacy, security, and trust between organisations.
+Marcela takes a systems-oriented approach, combining real-world requirements with system design, implementation and experimental validation. Her work spans healthcare, predictive maintenance, aviation, digital identity, supply chains and distributed artificial intelligence.
 
-Marcela is actively involved in European research initiatives addressing trustworthy data management and distributed systems. She also contributes to teaching and supervises Bachelor, Master's, and PhD researchers at TU Delft.
+She supervises PhD candidates and Master’s students and collaborates closely with academic, public and industry partners. Marcela welcomes students interested in combining technical research with real-world challenges in cybersecurity, trustworthy artificial intelligence and secure data collaboration.
+ 
