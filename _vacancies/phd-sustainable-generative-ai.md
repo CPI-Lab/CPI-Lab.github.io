@@ -3,14 +3,14 @@ position_title: "PhD Position: Sustainable Generative AI for Digital Sovereignty
 
 description: "Research sustainable and sovereign Generative AI infrastructures that enable organisations to retain control over sensitive data and critical AI capabilities."
 
-status: soon
+status: open
 
 position_type: "PhD"
 department: "Engineering Systems and Services (ESS)"
 location: "Delft, Netherlands"
 project: "EU Horizon"
 
-application_url:
+application_url: "https://careers.tudelft.nl/job/Delft-PhD-Position-Sustainable-Generative-AI-for-Digital-Sovereignty-2628-CD/1373343657/"
 
 supervisors:
   - "Aaron Ding"
