@@ -23,6 +23,12 @@ layout: default
             </p>
             {% endif %}
 
+            {% if page.visiting_period %}
+            <p class="member-visiting-period">
+                Visiting period: {{ page.visiting_period }}
+            </p>
+            {% endif %}
+
             {% if page.affiliations %}
             <div class="member-profile-affiliations">
                 {% for affiliation in page.affiliations %}
