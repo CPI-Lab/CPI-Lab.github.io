@@ -35,20 +35,6 @@ permalink: /members/
   {% endif %}
 
 
-{% assign visiting = site.members | where: "role", "visiting" | sort: "title" %}
-{% if visiting.size > 0 %}
-  <section class="member-group">
-    <h2>Visiting Researchers</h2>
-
-    <div class="member-grid">
-      {% for member in visiting %}
-        {% include member-card.html member=member %}
-      {% endfor %}
-    </div>
-  </section>
-  {% endif %}
-
-
 {% assign senior = site.members | where: "role", "postdoc-senior" | sort: "title" %}
 {% if senior.size > 0 %}
   <section class="member-group">
@@ -94,10 +80,24 @@ permalink: /members/
 {% assign affiliated = site.members | where: "role", "affiliated" | sort: "title" %}
 {% if affiliated.size > 0 %}
   <section class="member-group">
-    <h2>Affiliated Members</h2>
+    <h2>Affiliated Fellows</h2>
 
     <div class="member-grid">
       {% for member in affiliated %}
+        {% include member-card.html member=member %}
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+
+{% assign visiting = site.members | where: "role", "visiting" | sort: "title" %}
+{% if visiting.size > 0 %}
+  <section class="member-group">
+    <h2>Visiting Researchers</h2>
+
+    <div class="member-grid">
+      {% for member in visiting %}
         {% include member-card.html member=member %}
       {% endfor %}
     </div>
